@@ -13,18 +13,17 @@
       const app = Vue.createApp({
         data() {
           return {
-            text: "666",
+            firstName: "666",
+            lastName: "Martinez"
           };
         },
-        methods: {
-          input(e) {
-            this.text = e.target.value;
-          },
+        computed:{
+            fullName(){
+                return this.firstName + "" + this.lastName;
+            }
         },
-        template: `<h2>{{ text }}</h2>
-      <input type="text" 
-      v-on:input="input"  
-      v-bind:value="text"/>
+        template: `<h2>{{ fullName }}</h2>
+            
      `,
       });
       app.mount("#app");
