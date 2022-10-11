@@ -16,19 +16,17 @@
             firstName: "666",
             lastName: "Martinez", 
             open:false,
-            styles: {
-                backgroundColor: "#e5e5e5"
-            }
+
           };
         },
         watch:{
             open(value){
                 if (value) {
                     this.text = "abierta";
-                    this.styles.backgroundColor="#b5e7a0";
+
                 } else {
                     this.text = "cerrada";
-                    this.styles.backgroundColor="red";
+
                 }
             }
         },
@@ -41,7 +39,7 @@
             }
         },
         template: `
-        <div class="container" :style="styles" >
+        <div class="container" :class="{'open' : open, 'closed': !open }" >
         <h2>{{ fullName }}</h2>
             <button @click="open = !open"> {{ label }} </button>
             </div>
