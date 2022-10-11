@@ -14,21 +14,29 @@
         data() {
           return {
             firstName: "666",
-            lastName: "Martinez"
+            lastName: "Martinez", 
+            open:false
           };
         },
         watch:{
-            text(value){
-                console.log("watcher", value);
+            open(value){
+                if (value) {
+                    this.text = "abierta";
+                } else {
+                    this.text = "cerrada";
+                }
             }
         },
         computed:{
             fullName(){
                 return this.firstName + "" + this.lastName;
+            },
+            label(){
+                return this.open ? "Cerrar" : "Abrir";
             }
         },
         template: `<h2>{{ fullName }}</h2>
-            
+            <button @click="open = !open"> {{ label }} </button>
      `,
       });
       app.mount("#app");
