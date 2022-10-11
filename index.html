@@ -17,6 +17,15 @@
             lastName: "Martinez",
             open: false,
             username: "",
+            posts :[{
+                title: "Titulo 1",
+                description: "lorem ipsum"
+            },{
+                title: "Titulo 2",
+                description: "lorem ipsum"
+            }
+        ]
+
           };
         },
         watch: {
@@ -42,9 +51,13 @@
         },
         template: `
         <div class="container" :class="{'open' : open, 'closed': !open }" >
-        <h2>{{ fullName }}</h2>
+            <h2>{{ fullName }}</h2>
              <div v-if="open">
                 <p> Hola, {{ username}} </p>
+                <div v-for="(item,i) in posts" :key="i" class="item">
+                    <div class="title" > {{item.title}} </div>
+                    <p> {{item.description}}  </p>
+                </div>
             </div>
             <div v-else>
                 <label> Username </label>
@@ -53,41 +66,50 @@
             <button @click="open = !open"> 
                 <div v-if="!open">Acceder</div>
                 <div v-else> Salir</div>
-                </button>
-            </div>
+            </button>
+         </div>
      `,
       });
       app.mount("#app");
     </script>
     <style>
-      html,
-      body {
-        height: 100vh;
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-      }
-      #app,
-      .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-      }
-      button {
-        margin-top: 24px;
-        border: none;
-        background-color: white;
-        padding: 8px 24px;
-        border-radius: 12px;
-      }
-      .closed {
-        background-color: #eca1a6;
-      }
-      .open {
-        background-color: #b5e7a0;
-      }
+        html, body {
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #app, .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+        button {
+            margin-top: 24px;
+            border: none;
+            background-color: white;
+            padding: 8px 24px;
+            border-radius: 12px;
+        }
+        .closed {
+            background-color: #eca1a6;
+        }
+        .open {
+            background-color: #b5e7a0;
+        }
+        .list {
+            display: flex;
+            flex-direction: column;
+        }
+        .item {
+            border: 1px solid black;
+        }
+        .title {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
     </style>
   </body>
 </html>
