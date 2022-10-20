@@ -16,22 +16,26 @@
                     text: "Hola"
                 };
             },
+            provide(){
+                return {
+                    otroTexto: this.text
+                };
+            
+            },
              template: `
-             <v-button ref="elemento" :label="text"></v-button>`
+             <div>
+                <p> {{ text }} </p>
+                <otro  />
+            </div>`
         });
-        app.component( "v-button",{
-            props: ["label"],
-            template:` <button>{{label}}</button>`
+        app.component( "otro",{
+            template:`<tercer/> `
+        });
+        app.component( "tercer",{
+            inject:["otroTexto"],
+            template:`<div>{{ otroTexto }}</div/> `
         });
         const vm = app.mount("#app");
-        console.log(vm);
-        console.log(vm.$root);
-        //html
-        console.log(vm.$el);
-        //referenciar
-        console.log(vm.$refs.elemento);
-         //props
-         console.log(vm.$props);
     </script>
 </body>
 </html>
